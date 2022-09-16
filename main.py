@@ -6,9 +6,6 @@
 
 # libs
 
-# import required module
-
-
 # Apresentação do programa ao usuário
 print(
     '\nBem-vindo ao Quiz Rural!!!\nResponda as perguntas e ganhe pontos! O objetivo é ficar entre os primeiros no ranking geral!\nVamos nessa!'
