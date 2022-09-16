@@ -1,0 +1,10 @@
+Qual tag HTML é utilizada para exibir uma imagem? | <imagem> | <img /> | <figure></figure> | a
+Qual tag HTML é utilizada para exibir uma imagem? | <imagem> | <img /> | <figure></figure> | b
+Qual tag HTML é utilizada para exibir uma imagem? | <imagem> | <img /> | <figure></figure> | c
+Qual tag HTML é utilizada para exibir uma imagem? | <imagem> | <img /> | <figure></figure> | aa
+Qual tag HTML é utilizada para exibir uma imagem? | <imagem> | <img /> | <figure></figure> | bb
+Qual tag HTML é utilizada para exibir uma imagem? | <imagem> | <img /> | <figure></figure> | cc
+Qual tag HTML é utilizada para exibir uma imagem? | <imagem> | <img /> | <figure></figure> | aaa
+Qual tag HTML é utilizada para exibir uma imagem? | <imagem> | <img /> | <figure></figure> | bbb
+Qual tag HTML é utilizada para exibir uma imagem? | <imagem> | <img /> | <figure></figure> | ccc
+Qual tag HTML é utilizada para exibir uma imagem? | <imagem> | <img /> | <figure></figure> | aaaa
