@@ -8,11 +8,7 @@
 import random
 from replit import audio
 
-
-
-# Lista de variáveis
-listaDePerguntas = []
-listaDePerguntasRS = []
+# Criaando dicionário de perguntas
 perguntas = {}
 
 def limparPerguntas():
@@ -25,16 +21,81 @@ def adicionarPergunta():
   alternativa2 = input('Digite o texto da alternativa b): ')
   alternativa3 = input('Digite o texto da alternativa c): ')
   alternativaCorreta = input('Digite a letra da alternativa correta: ')
-  nivelPergunta = input('Qual o nível da pergunta? Digite: f=fácil, m=médio e d=difícil: ')
+  nivelPergunta = input('Qual o nível da pergunta? Digite (f=fácil, m=médio e d=difícil): ')
 
-  line = pergunta + "|" + alternativa1 + "|" + alternativa2 + "|" + alternativa3 + "|" + alternativaCorreta + "|" + nivelPergunta + "\n"
+  line = "\n" + pergunta + "|" + alternativa1 + "|" + alternativa2 + "|" + alternativa3 + "|" + alternativaCorreta + "|" + nivelPergunta
   # Abrir arquivo para inclusão
   with open("base-de-perguntas-e-respostas.txt", 'a') as f:
     f.write(line)
-
+  limparPerguntas()
   carregarPerguntas()
 
+def removerPergunta():
+  
+  file = open("base-de-perguntas-e-respostas.txt", 'r')
+  lines = file.readlines()
+  file.close()
+
+  contador = 1
+  for line in lines:
+    print(contador,line)
+    contador+=1
+
+  numeroLine = int(input('\nDigite o número da pergunta que deseja remover: '))
+  
+  del lines[numeroLine - 1]
+
+  # Debug
+  #print(lines)
+
+  newFile = open("base-de-perguntas-e-respostas.txt", 'w+')
+  
+  for line in lines:
+    newFile.write(line)
+  
+  newFile.close()
+
+  # Debug
+  #print(lines)
+  
+  limparPerguntas()
+  carregarPerguntas()
+
+def alterarPergunta():
+  
+  file = open("base-de-perguntas-e-respostas.txt", 'r')
+  lines = file.readlines()
+  file.close()
+
+  contador = 1
+  for line in lines:
+    print(contador,line)
+    contador+=1
+
+  numeroLine = int(input('\nDigite o número da pergunta que deseja alterar: '))
+  
+  listaDePerguntas = [line.split("|") for line in lines]
+  print(listaDePerguntas[numeroLine - 1])
+  #print('Qual informação gostaria de atualizar?\n')
+  #lines[numeroLine - 1]
+  pergunta = input('Digite a pergunta seguida de ponto de interrogação (?):')
+  alternativa1 = input('Digite o texto da alternativa a): ')
+  alternativa2 = input('Digite o texto da alternativa b): ')
+  alternativa3 = input('Digite o texto da alternativa c): ')
+  alternativaCorreta = input('Digite a letra da alternativa correta: ')
+  nivelPergunta = input('Qual o nível da pergunta? Digite (f=fácil, m=médio e d=difícil): ')
+
+  line = "\n" + pergunta + "|" + alternativa1 + "|" + alternativa2 + "|" + alternativa3 + "|" + alternativaCorreta + "|" + nivelPergunta
+  # Abrir arquivo para inclusão
+  with open("base-de-perguntas-e-respostas.txt", 'w+') as f:
+    f.write(line)
+
+
 def carregarPerguntas(nivel = 'f'):
+
+  # Lista de variáveis
+  listaDePerguntas = []
+  listaDePerguntasRS = []
   
   # Lendo as perguntas de um arquivo externo. As perguntas e respostas estão separadas
   # pelo caractere | (pipe)
@@ -142,9 +203,15 @@ print('2 - Remover pergunta do banco de perguntas')
 print('3 - Alterar pergunta do banco de perguntas')
 print('4 - Buscar uma pergunta no banco de perguntas')
 print('5 - Jogar')
-print('0 - Encerrar o programa')
+#print('0 - Encerrar o programa')
 
 opcao = int(input('Digite o número da opção desejada: '))
 
 if  opcao == 5:
   jogar()
+elif opcao == 1:
+  adicionarPergunta()
+elif opcao == 2:
+  removerPergunta()
+elif opcao == 3:
+  alterarPergunta()
