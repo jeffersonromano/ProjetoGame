@@ -1,10 +1,4 @@
-Qual tag HTML é utilizada para exibir uma imagem? | <imagem> | <img /> | <figure></figure> | a
-Qual tag HTML é utilizada para exibir uma imagem? | <imagem> | <img /> | <figure></figure> | b
-Qual tag HTML é utilizada para exibir uma imagem? | <imagem> | <img /> | <figure></figure> | c
-Qual tag HTML é utilizada para exibir uma imagem? | <imagem> | <img /> | <figure></figure> | aa
-Qual tag HTML é utilizada para exibir uma imagem? | <imagem> | <img /> | <figure></figure> | bb
-Qual tag HTML é utilizada para exibir uma imagem? | <imagem> | <img /> | <figure></figure> | cc
-Qual tag HTML é utilizada para exibir uma imagem? | <imagem> | <img /> | <figure></figure> | aaa
-Qual tag HTML é utilizada para exibir uma imagem? | <imagem> | <img /> | <figure></figure> | bbb
-Qual tag HTML é utilizada para exibir uma imagem? | <imagem> | <img /> | <figure></figure> | ccc
-Qual tag HTML é utilizada para exibir uma imagem? | <imagem> | <img /> | <figure></figure> | aaaa
+Qual tag HTML é utilizada para exibir uma imagem? | <imagem> | <img /> | <figure></figure> | b | f
+Qual a função do docType? | Especificar o tipo do arquivo | Informar ao navegador a versão do HTML | Especificar o formato do arquivo | b | m
+Porque Meta tags são extremamente importantes para um site? | Porque dão informações de metas | Porque informam ao usuário sobre o site. | Porque permitem que os mecanismos de pesquisa categorizem o conteúdo do site corretamente. | c | d
+Onde o estilo da página (CSS) deve ser inserido/chamado? | Na tag <body> | Na tag <head> | Na tag <footer> | b | f
