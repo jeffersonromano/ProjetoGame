@@ -4,3 +4,8 @@ Romano|2
 Mô|2
 Mô|1
 Jeff|2
+Romano|2
+Mozão|2
+Teste|1
+Eu|2
+Mi|1

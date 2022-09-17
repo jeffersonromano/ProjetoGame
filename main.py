@@ -6,6 +6,9 @@
 
 # imports libs
 import random
+from replit import audio
+
+
 
 # Lista de variáveis
 listaDePerguntas = []
@@ -13,7 +16,9 @@ listaDePerguntasRS = []
 perguntas = {}
 
 def limparPerguntas():
-  perguntas = {}
+  perguntas.clear()
+  return perguntas
+  
 def adicionarPergunta():
   pergunta = input('Digite a pergunta seguida de ponto de interrogação (?):')
   alternativa1 = input('Digite o texto da alternativa a): ')
@@ -68,6 +73,8 @@ def carregarPerguntas(nivel = 'f'):
   return perguntas
 
 def jogar():
+
+  source = audio.play_file('epic_battle_music_1-6275.mp3')
 
   print('\nIniciando partida!\n')
   nivel = input('Qual o nível de dificuldade desejado?\n(f=fácil, m=médio e d=difícil): ')
