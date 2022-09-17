@@ -11,10 +11,16 @@ from replit import audio
 # Criaando dicionário de perguntas
 perguntas = {}
 
+#----------------------------------------------------------#
+# Função para limpar perguntas carregadas                  #
+#----------------------------------------------------------#
 def limparPerguntas():
   perguntas.clear()
   return perguntas
   
+#----------------------------------------------------------#
+# Função para adicionar uma pergunta                       #
+#----------------------------------------------------------#
 def adicionarPergunta():
   pergunta = input('Digite a pergunta seguida de ponto de interrogação (?):')
   alternativa1 = input('Digite o texto da alternativa a): ')
@@ -29,7 +35,10 @@ def adicionarPergunta():
     f.write(line)
   limparPerguntas()
   carregarPerguntas()
-
+  
+#----------------------------------------------------------#
+# Função para remover uma pergunta                         #
+#----------------------------------------------------------#
 def removerPergunta():
   
   file = open("base-de-perguntas-e-respostas.txt", 'r')
@@ -60,7 +69,10 @@ def removerPergunta():
   
   limparPerguntas()
   carregarPerguntas()
-
+  
+#----------------------------------------------------------#
+# Função para alterar uma pergunta                         #
+#----------------------------------------------------------#
 def alterarPergunta():
   
   file = open("base-de-perguntas-e-respostas.txt", 'r')
@@ -90,7 +102,9 @@ def alterarPergunta():
   with open("base-de-perguntas-e-respostas.txt", 'w+') as f:
     f.write(line)
 
-
+#----------------------------------------------------------#
+# Função para carregar perguntas                           #
+#----------------------------------------------------------#
 def carregarPerguntas(nivel = 'f'):
 
   # Lista de variáveis
@@ -133,7 +147,10 @@ def carregarPerguntas(nivel = 'f'):
   #return print(perguntas)
   return perguntas
 
-def jogar():
+#----------------------------------------------------------#
+# Função para iniciar uma partida                          #
+#----------------------------------------------------------#
+def jogar(ativarRanking = False):
 
   source = audio.play_file('epic_battle_music_1-6275.mp3')
 
@@ -176,8 +193,10 @@ def jogar():
     # verificando se o usuário acertou ou não e dando feedback imediato
     if respostaUsuario.lower() == pv['respostaCerta']:
       totalAcertos += 1
+      #acertou = audio.play_file('correct-2-46134.mp3')
       print("Aaaaaaacertou, miseravi!!!")
     else:
+      #errou = audio.play_file('negative_beeps-6008.mp3')
       print("Êeeeeeerrou!!! Que merda hein?! Sabia não :(")
   
     contador += 1
@@ -187,31 +206,81 @@ def jogar():
       #percentualAcertos = totalAcertos / qtdPerguntas * 100
       #print("\nPercentual de acerto: {:.2f}%".format(percentualAcertos))
       line = nomeJogador+'|'+str(totalAcertos)+'\n'
-      with open("ranking-jogadores.txt", 'a+') as r:
+
+      # Separando ranking por nível, o nível fácil é o default
+      if nivel == 'm': # médio
+        arquivoRanking = 'ranking-jogadores-m.txt'
+      elif nivel == 'd': # difícil
+        arquivoRanking = 'ranking-jogadores-d.txt'
+      else: # fácil
+        arquivoRanking = 'ranking-jogadores.txt'
+      
+      with open(arquivoRanking, 'a+') as r:
         # r.write(nomeJogador)
         # r.write('|')
         # r.write(str(totalAcertos))
         # r.write('\n')
         r.writelines(line)
+        
       limparPerguntas()
-      jogar()
+      if ativarRanking == False:
+        jogar()
+      else:
+        listarRanking(nivel)
 
-# Exibir menu de opções
-print('Seja bem-vindo! Qual das opções a seguir você deseja realizar?\n\n')
-print('1 - Adicionar pergunta ao banco de perguntas')
-print('2 - Remover pergunta do banco de perguntas')
-print('3 - Alterar pergunta do banco de perguntas')
-print('4 - Buscar uma pergunta no banco de perguntas')
-print('5 - Jogar')
-#print('0 - Encerrar o programa')
+#----------------------------------------------------------#
+# Função para exibir ranking                               #
+#----------------------------------------------------------#      
+def listarRanking(nivel = 'f'):
 
-opcao = int(input('Digite o número da opção desejada: '))
+  # Separando ranking por nível, o nível fácil é o default
+  if nivel == 'm': # médio
+    arquivoRanking = 'ranking-jogadores-m.txt'
+  elif nivel == 'd': # difícil
+    arquivoRanking = 'ranking-jogadores-d.txt'
+  else: # fácil
+    arquivoRanking = 'ranking-jogadores.txt'
+    
+  with open(arquivoRanking, encoding='utf-8') as r:
+    # Criando um array com os dados de uma linha e quebrando em valores com a função split
+    ranking = [line.split("|") for line in r]
+    
+    def takeSecond(elem):
+      return elem[1]
+      
+    print("\nRanking geral:\n-------------------")
+    
+    #Ordenar pelo segundo elemento da lista
+    rankingSorted = sorted(ranking,key=takeSecond, reverse=True)
+    
+    for posicao in rankingSorted:
+      print(f'Nome: {posicao[0]}\nPontos: {posicao[1].strip()}\n------------------')     
+  
+#----------------------------------------------------------#
+# Função para chamar menu de opções                        #
+#----------------------------------------------------------#
+def menuInicial():
+  # Exibir menu de opções
+  print('Seja bem-vindo! Qual das opções a seguir você deseja realizar?\n\n')
+  print('1 - Adicionar pergunta ao banco de perguntas')
+  print('2 - Remover pergunta do banco de perguntas')
+  print('3 - Alterar pergunta do banco de perguntas')
+  print('4 - Buscar uma pergunta no banco de perguntas')
+  print('5 - Jogar')
+  print('0 - Mostrar ranking geral\n')
+  
+  opcao = int(input('Digite o número da opção desejada: '))
+  
+  if  opcao == 5:
+    jogar()
+  elif opcao == 1:
+    adicionarPergunta()
+  elif opcao == 2:
+    removerPergunta()
+  elif opcao == 3:
+    alterarPergunta()
+  elif opcao == 0:
+    nivel = input('Qual o nível você deseja ver o ranking?\n(f=fácil, m=médio e d=difícil): ')
+    listarRanking(nivel)
 
-if  opcao == 5:
-  jogar()
-elif opcao == 1:
-  adicionarPergunta()
-elif opcao == 2:
-  removerPergunta()
-elif opcao == 3:
-  alterarPergunta()
+menuInicial()

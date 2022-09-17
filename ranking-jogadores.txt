@@ -9,3 +9,6 @@ Mozão|2
 Teste|1
 Eu|2
 Mi|1
+Jefferson|1
+Romano|2
+Arthur|0
