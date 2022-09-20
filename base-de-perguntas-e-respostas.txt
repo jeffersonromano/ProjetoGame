@@ -4,5 +4,5 @@ Porque Meta tags são extremamente importantes para um site?|Porque dão informa
 Onde o estilo da página (CSS) deve ser inserido/chamado?|Na tag <body>|Na tag <head>|Na tag <footer>|b|f
 Qual a função do magnesio?|Perder peso|Regular arritimia cardiaca|Diminui o stress|b|d
 O que é certificado digital?|Meio de assinatura digital regularizada pela receita federal|Assinatura escaneada no computador|Assinatura de serviço Jurídico|a|m
-Quanto é 5*4?|20|24|18|a|m
+Qual a capital do Brasil?|Brasília|Brasólia|Brasileira|a|f
 Quantos megabytes tem em 1 gigabyte?|1000|1024|1026|b|d

@@ -12,3 +12,10 @@ Mi|1
 Jefferson|1
 Romano|2
 Arthur|0
+Mozão|1
+Jeffs|2
+Romano|2
+Romano|1
+Fulano|2
+Romário|1
+Listrado|2

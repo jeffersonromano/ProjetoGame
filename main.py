@@ -11,6 +11,9 @@ from replit import audio
 # Criaando dicionário de perguntas
 perguntas = {}
 
+# Carregando fundo musical
+#source = audio.play_file('epic_battle_music_1-6275.mp3')
+
 #----------------------------------------------------------#
 # Função para limpar perguntas carregadas                  #
 #----------------------------------------------------------#
@@ -74,7 +77,7 @@ def removerPergunta():
 # Função para alterar uma pergunta                         #
 #----------------------------------------------------------#
 def alterarPergunta():
-  
+  print()
   file = open("base-de-perguntas-e-respostas.txt", 'r')
   lines = file.readlines()
   file.close()
@@ -87,25 +90,31 @@ def alterarPergunta():
   numeroLine = int(input('\nDigite o número da pergunta que deseja alterar: '))
   
   listaDePerguntas = [line.split("|") for line in lines]
-  print(listaDePerguntas[numeroLine - 1])
-  #print('Qual informação gostaria de atualizar?\n')
+  position = numeroLine - 1
+  
+  perguntaEscolhida = listaDePerguntas[numeroLine - 1]
+  print(perguntaEscolhida)
+  
+  #print(listaDePerguntas[numeroLine - 1])
   #lines[numeroLine - 1]
-  pergunta = input('Digite a pergunta seguida de ponto de interrogação (?):')
-  alternativa1 = input('Digite o texto da alternativa a): ')
-  alternativa2 = input('Digite o texto da alternativa b): ')
-  alternativa3 = input('Digite o texto da alternativa c): ')
-  alternativaCorreta = input('Digite a letra da alternativa correta: ')
-  nivelPergunta = input('Qual o nível da pergunta? Digite (f=fácil, m=médio e d=difícil): ')
+  
+  pergunta = input('Digite a nova pergunta seguida de ponto de interrogação (?):')
+  alternativa1 = input('Digite o novo texto da alternativa a): ')
+  alternativa2 = input('Digite o novo texto da alternativa b): ')
+  alternativa3 = input('Digite o novo texto da alternativa c): ')
+  alternativaCorreta = input('Digite a nova letra da alternativa correta: ')
+  nivelPergunta = input('Qual o novo nível da pergunta? Digite (f=fácil, m=médio e d=difícil): ')
 
-  line = "\n" + pergunta + "|" + alternativa1 + "|" + alternativa2 + "|" + alternativa3 + "|" + alternativaCorreta + "|" + nivelPergunta
+  lines[position] = pergunta + "|" + alternativa1 + "|" + alternativa2 + "|" + alternativa3 + "|" + alternativaCorreta + "|" + nivelPergunta + '\n'
+  #line = "\n" + 
   # Abrir arquivo para inclusão
   with open("base-de-perguntas-e-respostas.txt", 'w+') as f:
-    f.write(line)
+    f.writelines(lines)
 
 #----------------------------------------------------------#
 # Função para carregar perguntas                           #
 #----------------------------------------------------------#
-def carregarPerguntas(nivel = 'f'):
+def carregarPerguntas(nivel = 'f', quantidadePerguntas = 5):
 
   # Lista de variáveis
   listaDePerguntas = []
@@ -116,15 +125,23 @@ def carregarPerguntas(nivel = 'f'):
   with open("base-de-perguntas-e-respostas.txt", encoding='utf-8') as f:
     # Criando um array com os dados de uma linha e quebrando em valores com a função split
     listaDePerguntas = [line.split("|") for line in f]
+
+    # Debug
     #print(listaDePerguntas)
     
     listaPorNivel = [x for x in listaDePerguntas if x[5].strip() == nivel]
-    
+
+    # Debug
     #print(listaPorNivel)
     
     # Sorteando perguntas
+    #listaDePerguntasRS = random.sample(listaPorNivel, len(listaPorNivel))
+    
+  if len(listaPorNivel) < quantidadePerguntas:
     listaDePerguntasRS = random.sample(listaPorNivel, len(listaPorNivel))
-
+  else:
+    listaDePerguntasRS = random.sample(listaPorNivel, quantidadePerguntas)
+    
   # Criar um contador para identificar a sequência das questões no dicionário "perguntas"
   count = 1
   
@@ -150,22 +167,22 @@ def carregarPerguntas(nivel = 'f'):
 #----------------------------------------------------------#
 # Função para iniciar uma partida                          #
 #----------------------------------------------------------#
-def jogar(ativarRanking = False):
-
-  source = audio.play_file('epic_battle_music_1-6275.mp3')
+def jogar():
 
   print('\nIniciando partida!\n')
   nivel = input('Qual o nível de dificuldade desejado?\n(f=fácil, m=médio e d=difícil): ')
-  
-  perguntas = carregarPerguntas(nivel)
+
+  qtdPerguntas = 2
+  # Carregando as perguntas e passando total de questões por partida
+  perguntas = carregarPerguntas(nivel, qtdPerguntas)
   
   # Apresentação do programa ao usuário
   print(
-    '\nBem-vindo ao Quiz Rural!!!\nResponda as perguntas e ganhe pontos!\nO objetivo é ficar entre os primeiros no ranking geral!\nVamos nessa!'
+    '\nResponda as perguntas e ganhe pontos!\nO objetivo é ficar entre os 10 primeiros no ranking geral!\nVamos nessa!'
   )
 
   # Identificando o jogador
-  nomeJogador = input('Digite seu nome: ')
+  nomeJogador = input('\nDigite o nome do jogador(a): ')
   
   totalAcertos = 0
   contador = 0
@@ -179,7 +196,9 @@ def jogar(ativarRanking = False):
     
     # Listando a pergunta
     print(f'\n{pk}: {pv["pergunta"]}\n')
-    print(pv['respostaCerta'])
+    # Debug
+    #print(pv['respostaCerta'])
+    
     # listando as respostas da pergunta
     for rk, rv in pv['respostas'].items():
       print(f'{rk}){rv}')
@@ -223,10 +242,9 @@ def jogar(ativarRanking = False):
         r.writelines(line)
         
       limparPerguntas()
-      if ativarRanking == False:
-        jogar()
-      else:
-        listarRanking(nivel)
+      
+      listarRanking(nivel)
+      jogar()       
 
 #----------------------------------------------------------#
 # Função para exibir ranking                               #
@@ -252,15 +270,20 @@ def listarRanking(nivel = 'f'):
     
     #Ordenar pelo segundo elemento da lista
     rankingSorted = sorted(ranking,key=takeSecond, reverse=True)
-    
+
+    contador = 1
     for posicao in rankingSorted:
-      print(f'Nome: {posicao[0]}\nPontos: {posicao[1].strip()}\n------------------')     
-  
+      print(f'Nome: {posicao[0]}\nPontos: {posicao[1].strip()}\n------------------')
+      if contador >= 10:
+        break
+      contador+= 1
+      
 #----------------------------------------------------------#
 # Função para chamar menu de opções                        #
 #----------------------------------------------------------#
 def menuInicial():
   # Exibir menu de opções
+  print('Seja bem-vindo ao Quiz Rural!!!\n')
   print('Seja bem-vindo! Qual das opções a seguir você deseja realizar?\n\n')
   print('1 - Adicionar pergunta ao banco de perguntas')
   print('2 - Remover pergunta do banco de perguntas')

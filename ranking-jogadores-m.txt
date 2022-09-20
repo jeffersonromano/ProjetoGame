@@ -1,2 +1,4 @@
 Romanos|3
 Natalya|2
+Micheline|3
+Sicrano|3
