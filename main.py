@@ -284,7 +284,7 @@ def listarRanking(nivel = 'f'):
 def menuInicial():
   # Exibir menu de opções
   print('Seja bem-vindo ao Quiz Rural!!!\n')
-  print('Seja bem-vindo! Qual das opções a seguir você deseja realizar?\n\n')
+  print('Qual das opções a seguir você deseja realizar?\n\n')
   print('1 - Adicionar pergunta ao banco de perguntas')
   print('2 - Remover pergunta do banco de perguntas')
   print('3 - Alterar pergunta do banco de perguntas')
