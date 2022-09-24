@@ -226,9 +226,6 @@ def jogar():
     # Obtendo a resposta do usuário em cada pergunta
     respostaUsuario = input('\nDigite a letra correspondente a sua resposta: ')
   
-    #print(type(pv['respostaCerta']))
-    #print(type(respostaUsuario))
-  
     # verificando se o usuário acertou ou não e dando feedback imediato
     if respostaUsuario.lower() == pv['respostaCerta']:
       totalAcertos += 1
@@ -237,6 +234,7 @@ def jogar():
     else:
       #errou = audio.play_file('negative_beeps-6008.mp3')
       print("Êeeeeeerrou!!! Que merda hein?! Sabia não :(")
+      print(f'Alternativa correta é: {pv["respostaCerta"]}')
   
     contador += 1
     # Gravando o ranking da partida
@@ -255,10 +253,6 @@ def jogar():
         arquivoRanking = 'ranking-jogadores.txt'
       
       with open(arquivoRanking, 'a+') as r:
-        # r.write(nomeJogador)
-        # r.write('|')
-        # r.write(str(totalAcertos))
-        # r.write('\n')
         r.writelines(line)
         
       limparPerguntas()
