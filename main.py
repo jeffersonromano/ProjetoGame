@@ -112,6 +112,26 @@ def alterarPergunta():
     f.writelines(lines)
 
 #----------------------------------------------------------#
+# Função para buscar pergunta                              #
+#----------------------------------------------------------#
+def buscarPergunta(valor,nivel):
+
+  carregarPerguntas(nivel)
+
+  #print(perguntas.values())
+  for item in perguntas.values():
+    #print(item.values())
+    if valor in item['pergunta']:
+      resultado = "Encontramos a seguinte pergunta: " + item['pergunta']
+      return print(resultado)
+
+  return print(f'Não encontramos pergunta contendo {valor}.')
+      
+  # if valor in perguntas.values():
+  #   print(f'\nEncontramos {valor} em {perguntas.values()} ')
+  # else:
+  #   print(f'\nNão encontramos {valor} em {perguntas.values()}')
+#----------------------------------------------------------#
 # Função para carregar perguntas                           #
 #----------------------------------------------------------#
 def carregarPerguntas(nivel = 'f', quantidadePerguntas = 5):
@@ -302,6 +322,9 @@ def menuInicial():
     removerPergunta()
   elif opcao == 3:
     alterarPergunta()
+  elif opcao == 4:
+    nivel = input('Em qual nível de perguntas você deseja buscar?\n(f=fácil, m=médio e d=difícil): ')
+    buscarPergunta(input('Digite parte da pergunta que deseja buscar: '),nivel)
   elif opcao == 0:
     nivel = input('Qual o nível você deseja ver o ranking?\n(f=fácil, m=médio e d=difícil): ')
     listarRanking(nivel)

@@ -9,7 +9,7 @@ O que significa CSS?|Cascading Style Sheet|Cascading Super Sheet|Cascading Speed
 Qual tag HTML é utilizada para menus de navegação?|<navigate>|<nave>|<nav>|c|m
 O que seria um elemento HTML em bloco?|Um elemento que ocupa a largura de uma linha inteira|Um elemento que não pode ter outros ao seu lado|Um elemento que quebra a tela na vertical|a|d
 Como podemos servir uma página com conteúdo em vários idiomas?|Adicionando o atributo lang="en" na tag <body>|Adicionando o atributo lang="en" na tag <heady>|Adicionando o atributo lang="en" na tag <html>|c|m
-Porque Meta tags são importantes para um site?|Porque dão informações de metas|Porque informam ao usuário sobre o site.|Porque permitem que os mecanismos de pesquisa categorizem o conteúdo do site corretamente.|c|d
+Porque metatags são importantes para um site?|Porque dão informações de metas|Porque informam ao usuário sobre o site.|Porque permitem que os mecanismos de pesquisa categorizem o conteúdo do site corretamente.|c|d
 Qual tag HTML é usada para citação?|<blockquote>|<block>|<blocked>|a|d
 Qual elemento HTML é utilizado pra navegar entre páginas páginas?|<a>|<nav>|<link>|a|d
 Para obter performance de carregamento de um site, qual o melhor local para adicionar o javascript?|Na tag <head>|Entre a tag <head> e <body>| Ou antes do fechamento da tag <body>|c|d
